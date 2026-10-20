@@ -138,14 +138,14 @@ dt{color:var(--mute)}
 </main>
 
 <footer id="contact"><div class="wrap" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
-  <span>© Alheri Atelier. Prototype with sample products.</span><span id="fnum"></span></div></footer>
+  <span>© AbbMar Atelier. Prototype with sample products.</span><span id="fnum"></span></div></footer>
 
 <div id="pv" role="dialog" aria-modal="true" aria-label="Product details"></div>
 
 <button class="fab" id="fab">Owner settings</button>
 <div id="adm"><h3 class="serif" style="font-size:24px">Owner settings</h3>
   <label>Business WhatsApp (digits, with country code)<input id="num" inputmode="numeric" placeholder="2348012345678"></label>
-  <label>Brand name<input id="bn" value="ALHERI"></label>
+  <label>Brand name<input id="bn" value="AbbMar"></label>
   <label>Announcement<input id="an"></label>
   <p class="meta" style="margin-top:12px">Enquiry button clicks (not sent messages): <b id="clk">0</b></p>
   <p class="note" id="numerr"></p>
@@ -171,9 +171,9 @@ const P=[
 const VIEWS=["Front","Back","Detail"];
 const $=s=>document.querySelector(s), esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const naira=n=>"₦"+n.toLocaleString("en-NG");
-let S={num:"",brand:"ALHERI",ann:$("#annc").textContent,clicks:{}};
-try{Object.assign(S,JSON.parse(localStorage.getItem("alheri")||"{}"))}catch(e){}
-const save=()=>{try{localStorage.setItem("alheri",JSON.stringify(S))}catch(e){}};
+let S={num:"",brand:"AbbMar",ann:$("#annc").textContent,clicks:{}};
+try{Object.assign(S,JSON.parse(localStorage.getItem("abbmar")||"{}"))}catch(e){}
+const save=()=>{try{localStorage.setItem("abbmar",JSON.stringify(S))}catch(e){}};
 
 function art(p,v=0){const [a,b]=p.tone,t=[["translate(0 0)"],["translate(200 0) scale(-1 1)"],["translate(-40 -30) scale(1.3)"]][v];
  return `<svg viewBox="0 0 200 250" role="img" aria-label="${esc(p.name)}, ${VIEWS[v]} view" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="lg${p.ref}${v}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs><rect width="200" height="250" fill="url(#lg${p.ref}${v})"/><g transform="${t}"><use href="#g-${p.g}" fill="rgba(246,241,231,.9)" transform="scale(.8) translate(25 8)"/></g></svg>`}
@@ -251,7 +251,7 @@ document.addEventListener("click",async e=>{
  if(t.dataset.co){sel.co=sel.co===t.dataset.co?null:t.dataset.co;if(!avail(sel.sz,sel.co))sel.sz=null;return drawPV()}
  if(t.id==="fab")return $("#adm").classList.toggle("on");
  if(t.id==="sv"){const n=$("#num").value.replace(/\D/g,"");if($("#num").value&&!/^\d{8,15}$/.test(n)){$("#numerr").textContent="Enter 8 to 15 digits including the country code, e.g. 2348012345678.";return}
-  S.num=n;S.brand=$("#bn").value||"ALHERI";S.ann=$("#an").value;save();applySettings();$("#numerr").textContent="Saved.";return}
+  S.num=n;S.brand=$("#bn").value||"AbbMar";S.ann=$("#an").value;save();applySettings();$("#numerr").textContent="Saved.";return}
  if(t.id==="hwa"||t.id==="besp"){if(!numOK()){$("#adm").classList.add("on");$("#numerr").textContent="Add the business WhatsApp number first.";return}
   return window.open("https://wa.me/"+S.num+"?text="+encodeURIComponent(t.id==="besp"?"Hello! I’d like to discuss a custom design.":"Hello! I’d like to ask about your collection."),"_blank","noopener")}
  if(t.id==="main"||e.target.closest("#main")){const m=$("#main");if(m&&!e.target.closest(".vplay"))m.classList.toggle("zoom")}
